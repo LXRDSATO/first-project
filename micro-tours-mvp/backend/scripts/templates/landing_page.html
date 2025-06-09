@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ spot.name }} - جولة مصغرة في {{ spot.city }} | Micro-Tours Darija</title>
+    <meta name="description" content="جولة سريعة في {{ spot.name }} بـ{{ spot.city }}: {{ script|truncate(150) }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="{{ spot.name }}, {{ spot.city }}, سياحة المغرب, أماكن سياحية, جولات مصغرة, Darija, Micro-Tours, فيديو سياحي, {{ spot.category|default('سياحة') }}">
+    <meta property="og:title" content="{{ spot.name }} - جولة مصغرة في {{ spot.city }}">
+    <meta property="og:description" content="{{ script|truncate(150) }}">
+    <meta property="og:type" content="video.other">
+    <meta property="og:video" content="{{ video_path }}">
+    <meta property="og:image" content="{{ spot.image_url|default('https://micro-tours-darija.com/static/default.jpg') }}">
+    <meta property="og:url" content="{{ request.url if request else '' }}">
+    <link rel="canonical" href="{{ request.url if request else '' }}">
+    <style>
+        body { font-family: 'Tajawal', Arial, sans-serif; background: #f8f8f8; color: #222; }
+        .container { max-width: 700px; margin: 40px auto; background: #fff; padding: 2em; border-radius: 10px; box-shadow: 0 2px 8px #ccc; }
+        h1 { color: #1a7f5a; }
+        .video { margin: 1em 0; }
+        .info { margin: 1em 0; }
+        .tips { background: #e6f7ee; padding: 1em; border-radius: 6px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>{{ spot.name }}</h1>
+    <div class="video">
+        <video width="100%" controls>
+            <source src="{{ video_path }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="info">
+        <strong>العنوان:</strong> {{ spot.address }}<br>
+        <strong>أوقات العمل:</strong> {{ spot.opening_hours|join(', ') }}<br>
+        <strong>عدد التقييمات:</strong> {{ spot.user_ratings_total }}<br>
+    </div>
+    <div class="script">
+        <h3>النص:</h3>
+        <p>{{ script }}</p>
+    </div>
+    <div class="tips">
+        <h4>نصائح محلية:</h4>
+        <ul>
+            <li>أفضل وقت للزيارة: الصباح أو بعد العصر</li>
+            <li>جرب الشاي المغربي أو القهوة المحلية</li>
+            <li>اسأل عن الأحداث أو العروض الخاصة</li>
+        </ul>
+    </div>
+    <div class="map">
+        <h4>الخريطة:</h4>
+        <iframe width="100%" height="250" frameborder="0" style="border:0"
+                src="https://www.google.com/maps?q={{ spot.location.lat }},{{ spot.location.lng }}&hl=ar&z=16&output=embed"
+                allowfullscreen>
+        </iframe>
+    </div>
+</div>
+</body>
+</html>

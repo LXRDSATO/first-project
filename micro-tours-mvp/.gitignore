@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+.env
+.env.*
+*.log
+*.pot
+*.mo
+*.swp
+*.bak
+*.tmp
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+dist/
+build/
+
+# Frontend
+frontend/pages/videos/
+frontend/pages/images/
+frontend/pages/review/
